@@ -34,7 +34,7 @@ namespace Project.Api.Controllers
             _testimonialService.TInsert(detectedValues);
             return Ok("Referans Başarıyla eklendi");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult TestimonialDelete(int id)
         {
             var detectedValues = _testimonialService.TGetByID(id);
@@ -50,7 +50,7 @@ namespace Project.Api.Controllers
             return Ok("Referans Başarıyla Güncellendi");
         }
 
-        [HttpGet("TestimonialGetByID")]
+        [HttpGet("{id}")]
         public IActionResult TestimonialGetByID(int id)
         {
             var detectedValues = _testimonialService.TGetByID(id);

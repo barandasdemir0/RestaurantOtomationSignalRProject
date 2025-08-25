@@ -35,7 +35,7 @@ namespace Project.Api.Controllers
             _categoryService.TInsert(detectedValues);
             return Ok("Kategori Başarıyla eklendi");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult CategoryDelete(int id)
         {
             var detectedValues = _categoryService.TGetByID(id);
@@ -51,7 +51,7 @@ namespace Project.Api.Controllers
             return Ok("Kategori Başarıyla Güncellendi");
         }
 
-        [HttpGet("CategoryGetByID")]
+        [HttpGet("{id}")]
         public IActionResult CategoryGetByID(int id)
         {
             var detectedValues = _categoryService.TGetByID(id);

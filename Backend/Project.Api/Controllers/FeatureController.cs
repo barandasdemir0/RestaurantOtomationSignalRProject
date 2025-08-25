@@ -33,7 +33,7 @@ namespace Project.Api.Controllers
             _featureService.TInsert(detectedValues);
             return Ok("Öne Çıkan Alan Başarıyla eklendi");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult FeatureDelete(int id)
         {
             var detectedValues = _featureService.TGetByID(id);
@@ -49,7 +49,7 @@ namespace Project.Api.Controllers
             return Ok("Öne Çıkan Alan Başarıyla Güncellendi");
         }
 
-        [HttpGet("FeatureGetByID")]
+        [HttpGet("{id}")]
         public IActionResult FeatureGetByID(int id)
         {
             var detectedValues = _featureService.TGetByID(id);

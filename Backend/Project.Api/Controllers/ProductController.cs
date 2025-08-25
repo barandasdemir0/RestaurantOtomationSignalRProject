@@ -34,7 +34,7 @@ namespace Project.Api.Controllers
             _productService.TInsert(detectedValues);
             return Ok("Ürün Başarıyla eklendi");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult ProductDelete(int id)
         {
             var detectedValues = _productService.TGetByID(id);
@@ -58,7 +58,7 @@ namespace Project.Api.Controllers
         }
 
 
-        [HttpGet("ProductListWithCategory")]
+        [HttpGet("{id}")]
         public IActionResult ProductListWithCategory()
         {
             var detectedValues = _productService.TGetProductsWithCategories();

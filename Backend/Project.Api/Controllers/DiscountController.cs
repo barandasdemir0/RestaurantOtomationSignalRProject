@@ -34,7 +34,7 @@ namespace Project.Api.Controllers
             _discountService.TInsert(detectedValues);
             return Ok("İndirim Başarıyla eklendi");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DiscountDelete(int id)
         {
             var detectedValues = _discountService.TGetByID(id);
@@ -50,7 +50,7 @@ namespace Project.Api.Controllers
             return Ok("İndirim Başarıyla Güncellendi");
         }
 
-        [HttpGet("DiscountGetByID")]
+        [HttpGet("{id}")]
         public IActionResult DiscountGetByID(int id)
         {
             var detectedValues = _discountService.TGetByID(id);

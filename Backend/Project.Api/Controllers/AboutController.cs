@@ -37,7 +37,7 @@ namespace Project.Api.Controllers
             return Ok("Hakkımda Kısmı Başarılı Bir Şekilde Eklendi");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult AboutDelete(int id)
         {
             var detectedValues = _aboutService.TGetByID(id);
@@ -55,7 +55,7 @@ namespace Project.Api.Controllers
             return Ok("Hakkımda Kısmı Başarılı Bir Şekilde Güncellendi");
         }
 
-        [HttpGet("AboutGetByID")]
+        [HttpGet("{id}")]
         public IActionResult AboutGetByID(int id)
         {
             var detectedValues = _aboutService.TGetByID(id);

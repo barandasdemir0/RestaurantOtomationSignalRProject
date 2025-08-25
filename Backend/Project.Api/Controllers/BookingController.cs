@@ -37,7 +37,7 @@ namespace Project.Api.Controllers
             _bookingService.TInsert(detectedValues);
             return Ok("Rezervasyon Başarıyla eklendi");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult BookingDelete(int id)
         {
             var detectedValues = _bookingService.TGetByID(id);
@@ -53,7 +53,7 @@ namespace Project.Api.Controllers
             return Ok("Rezervasyon Başarıyla Güncellendi");
         }
 
-        [HttpGet("BookingGetByID")]
+        [HttpGet("{id}")]
         public IActionResult BookingGetByID(int id)
         {
             var detectedValues = _bookingService.TGetByID(id);

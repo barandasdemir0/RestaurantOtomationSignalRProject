@@ -34,7 +34,7 @@ namespace Project.Api.Controllers
             _socialMediaService.TInsert(detectedValues);
             return Ok("Sosyal Medya Başarıyla eklendi");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult SocialMediaDelete(int id)
         {
             var detectedValues = _socialMediaService.TGetByID(id);
@@ -50,7 +50,7 @@ namespace Project.Api.Controllers
             return Ok("Sosyal Medya Başarıyla Güncellendi");
         }
 
-        [HttpGet("SocialMediaGetByID")]
+        [HttpGet("{id}")]
         public IActionResult SocialMediaGetByID(int id)
         {
             var detectedValues = _socialMediaService.TGetByID(id);

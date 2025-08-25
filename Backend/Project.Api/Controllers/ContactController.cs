@@ -33,7 +33,7 @@ namespace Project.Api.Controllers
             _contactService.TInsert(detectedValues);
             return Ok("İletişim Başarıyla eklendi");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult ContactDelete(int id)
         {
             var detectedValues = _contactService.TGetByID(id);
@@ -49,7 +49,7 @@ namespace Project.Api.Controllers
             return Ok("İletişim Başarıyla Güncellendi");
         }
 
-        [HttpGet("ContactGetByID")]
+        [HttpGet("{id}")]
         public IActionResult ContactGetByID(int id)
         {
             var detectedValues = _contactService.TGetByID(id);
