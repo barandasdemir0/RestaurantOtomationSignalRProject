@@ -1,4 +1,17 @@
+using Project.BusinessLayer.Abstract;
+using Project.BusinessLayer.Concrete;
+using Project.BusinessLayer.Container;
+using Project.DataAccessLayer.Abstract;
+using Project.DataAccessLayer.Concrete;
+using Project.DataAccessLayer.EntityFramework;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<SignalRContext>();
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.ContainerDependencies();//böylelikle container oluyor
+
 
 // Add services to the container.
 
