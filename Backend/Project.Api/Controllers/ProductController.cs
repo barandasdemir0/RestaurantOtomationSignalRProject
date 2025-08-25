@@ -56,5 +56,13 @@ namespace Project.Api.Controllers
             var detectedValues = _productService.TGetByID(id);
             return Ok(detectedValues);
         }
+
+
+        [HttpGet("ProductListWithCategory")]
+        public IActionResult ProductListWithCategory()
+        {
+            var detectedValues = _productService.TGetProductsWithCategories();
+            return Ok(_mapper.Map<List<ResultProductWithCategory>>(detectedValues));
+        }
     }
 }

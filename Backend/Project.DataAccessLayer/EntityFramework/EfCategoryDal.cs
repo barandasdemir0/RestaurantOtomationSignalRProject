@@ -1,4 +1,5 @@
-﻿using Project.DataAccessLayer.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using Project.DataAccessLayer.Abstract;
 using Project.DataAccessLayer.Concrete;
 using Project.DataAccessLayer.Repositories;
 using Project.EntityLayer.Concrete;
@@ -15,5 +16,7 @@ namespace Project.DataAccessLayer.EntityFramework
         public EfCategoryDal(SignalRContext context) : base(context)
         {
         }
+
+       
     }
 }

@@ -33,6 +33,11 @@ namespace Project.BusinessLayer.Concrete
            return _productDal.GetListAll();
         }
 
+        public List<Product> TGetProductsWithCategories()
+        {
+            return _productDal.GetProductsWithCategories();
+        }
+
         public void TInsert(Product entity)
         {
             _productDal.Insert(entity);

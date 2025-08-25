@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project.EntityLayer.Concrete
+namespace Project.DtoLayer.ProductDto
 {
-    public class Product
+    public class ResultProductWithCategory
     {
         public int ProductID { get; set; }
         public string? ProductName { get; set; }
@@ -15,7 +15,8 @@ namespace Project.EntityLayer.Concrete
         public string? ProductImageUrl { get; set; }
         public bool ProductStatus { get; set; }
 
-        public int CategoryID { get; set; }
-        public Category? Category { get; set; }
+        public string? CategoryCategoryName { get; set; }// işte bu kısmı sonradan ekledik çünkü include ile birbirne bağladık ve bu bilgilerin yanında bu da lazım oldu
+
+       
     }
 }
