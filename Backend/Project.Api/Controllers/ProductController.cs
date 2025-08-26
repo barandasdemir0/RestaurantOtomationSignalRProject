@@ -50,7 +50,7 @@ namespace Project.Api.Controllers
             return Ok("Ürün Başarıyla Güncellendi");
         }
 
-        [HttpGet("ProductGetByID")]
+        [HttpGet("{id}")]
         public IActionResult ProductGetByID(int id)
         {
             var detectedValues = _productService.TGetByID(id);
@@ -58,7 +58,7 @@ namespace Project.Api.Controllers
         }
 
 
-        [HttpGet("{id}")]
+        [HttpGet("ProductListWithCategory")]
         public IActionResult ProductListWithCategory()
         {
             var detectedValues = _productService.TGetProductsWithCategories();

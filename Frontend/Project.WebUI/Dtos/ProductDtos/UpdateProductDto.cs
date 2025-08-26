@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Project.DtoLayer.ProductDto
+﻿namespace Project.WebUI.Dtos.ProductDtos
 {
     public class UpdateProductDto
     {
@@ -15,5 +9,6 @@ namespace Project.DtoLayer.ProductDto
         public string? ProductImageUrl { get; set; }
         public bool ProductStatus { get; set; }
         public int CategoryID { get; set; }
+
     }
 }
