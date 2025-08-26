@@ -1,6 +1,6 @@
-﻿namespace Project.WebUI.Dtos.AboutDto
+﻿namespace Project.WebUI.Dtos.AboutDtos
 {
-    public class UpdateAboutDto
+    public class GetAboutDto
     {
         public int AboutID { get; set; }
         public string? AboutImageUrl { get; set; }

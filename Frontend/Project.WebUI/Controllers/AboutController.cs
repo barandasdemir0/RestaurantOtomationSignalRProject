@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Project.WebUI.Dtos.AboutDto;
+using Project.WebUI.Dtos.AboutDtos;
 using System.Text;
 using System.Threading.Tasks;
 
