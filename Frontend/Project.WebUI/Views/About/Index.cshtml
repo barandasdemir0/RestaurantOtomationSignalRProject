@@ -1,0 +1,64 @@
+﻿@model List<ResultAboutDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Hakkımda İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Hakkımda Listesi</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-sub">
+                            Tema Bütünlüğü için Lütfen 1 tane Hakkımızda bölümü oluşturun daha fazlasını Açarsanız yaşanacak sorundan sorumluluk kabul etmeyiz.
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table mt-3">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Hakkımda Başlığı</th>
+                                    <th scope="col">Güncelle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@(++count)</td>
+                                        <td>@item.AboutTitle</td>
+
+                                        <td><a href="/About/AboutUpdate/@item.AboutID" class="btn btn-outline-warning">Güncelle</a></td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    @if (Model.Count<1)
+                    {
+                        <a href="/About/AboutCreate/" class="btn btn-outline-success">Ekle</a>
+                    }
+                    @if (Model.Count>1)
+                    {
+                        <div class="card-sub">
+                            Tema Bütünlüğü için Lütfen 1 tane Hakkımızda bölümü oluşturun daha fazlasını Açarsanız yaşanacak sorundan sorumluluk kabul etmeyiz.
+                        </div>
+                    }
+                   
+                   
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
