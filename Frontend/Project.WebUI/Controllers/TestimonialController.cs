@@ -36,6 +36,7 @@ namespace Project.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> TestimonialCreate(CreateTestimonialDto createTestimonialDto)
         {
+            createTestimonialDto.TestimonialStatus = true;
             var client = _httpClientFactory.CreateClient();
             var convertData = JsonConvert.SerializeObject(createTestimonialDto);
             StringContent content = new StringContent(convertData,Encoding.UTF8,"application/json");
@@ -64,7 +65,7 @@ namespace Project.WebUI.Controllers
         public async Task<IActionResult> TestimonialUpdate(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var findData = await client.GetAsync($"https://localhost:7240/api/SocialMedia/{id}");
+            var findData = await client.GetAsync($"https://localhost:7240/api/Testimonial/{id}");
             if (findData.IsSuccessStatusCode)
             {
                 var dataString = await findData.Content.ReadAsStringAsync();
@@ -80,7 +81,7 @@ namespace Project.WebUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var deserializeData = JsonConvert.SerializeObject(updateTestimonialDto);
             StringContent stringContent = new StringContent(deserializeData, Encoding.UTF8, "application/json");
-            var sendData = await client.PutAsync("https://localhost:7240/api/SocialMedia", stringContent);
+            var sendData = await client.PutAsync("https://localhost:7240/api/Testimonial", stringContent);
             if (sendData.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

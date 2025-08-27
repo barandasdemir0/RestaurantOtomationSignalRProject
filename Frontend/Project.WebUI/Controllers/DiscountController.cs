@@ -22,7 +22,7 @@ namespace Project.WebUI.Controllers
             {
                 var makeString = await pullData.Content.ReadAsStringAsync();
                 var jsonConvert = JsonConvert.DeserializeObject<List<ResultDiscountDto>>(makeString);
-                return Ok(jsonConvert);
+                return View(jsonConvert);
             }
             return View();
         }
