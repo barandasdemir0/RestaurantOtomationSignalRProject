@@ -58,5 +58,33 @@ namespace Project.WebUI.Controllers
           
 
         }
+
+        [HttpGet]
+        public async Task<IActionResult> FeatureUpdate(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var findData = await client.GetAsync($"https://localhost:7240/api/Feature/{id}");
+            if (findData.IsSuccessStatusCode)
+            {
+                var dataString = await findData.Content.ReadAsStringAsync();
+                var convertData = JsonConvert.DeserializeObject<UpdateFeatureDto>(dataString);
+                return View(convertData);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> FeatureUpdate(UpdateFeatureDto updateFeatureDto)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var deserializeData = JsonConvert.SerializeObject(updateFeatureDto);
+            StringContent stringContent = new StringContent(deserializeData,Encoding.UTF8,"application/json");
+            var sendData = await client.PutAsync("https://localhost:7240/api/Feature",stringContent);
+            if (sendData.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }

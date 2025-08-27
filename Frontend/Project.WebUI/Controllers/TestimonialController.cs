@@ -47,11 +47,41 @@ namespace Project.WebUI.Controllers
             return View();
         }
 
-        public async Task<IActionResult> TestimonialCreate(int id)
+        public async Task<IActionResult> TestimonialDelete(int id)
         {
             var client = _httpClientFactory.CreateClient();
             var deleteData = await client.DeleteAsync($"https://localhost:7240/api/Testimonial/{id}");
             if (deleteData.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+     
+
+        [HttpGet]
+        public async Task<IActionResult> TestimonialUpdate(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var findData = await client.GetAsync($"https://localhost:7240/api/SocialMedia/{id}");
+            if (findData.IsSuccessStatusCode)
+            {
+                var dataString = await findData.Content.ReadAsStringAsync();
+                var convertData = JsonConvert.DeserializeObject<UpdateTestimonialDto>(dataString);
+                return View(convertData);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> TestimonialUpdate(UpdateTestimonialDto updateTestimonialDto)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var deserializeData = JsonConvert.SerializeObject(updateTestimonialDto);
+            StringContent stringContent = new StringContent(deserializeData, Encoding.UTF8, "application/json");
+            var sendData = await client.PutAsync("https://localhost:7240/api/SocialMedia", stringContent);
+            if (sendData.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
             }

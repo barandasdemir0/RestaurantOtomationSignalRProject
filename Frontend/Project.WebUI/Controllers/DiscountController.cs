@@ -57,5 +57,36 @@ namespace Project.WebUI.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> DiscountUpdate(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var findData = await client.GetAsync($"https://localhost:7240/api/Discount/{id}");
+            if (findData.IsSuccessStatusCode) 
+            {
+                var convertData = await findData.Content.ReadAsStringAsync();
+                var convertJson = JsonConvert.DeserializeObject<UpdateDiscountDto>(convertData);
+                return View(convertJson);
+
+
+            }
+            return View();
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DiscountUpdate(UpdateDiscountDto updateDiscountDto)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var convertData = JsonConvert.SerializeObject(updateDiscountDto);
+            StringContent content = new StringContent(convertData,Encoding.UTF8,"application/json");
+            var sendData = await client.PutAsync("https://localhost:7240/api/Discount", content);
+            if (sendData.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }
