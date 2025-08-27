@@ -27,6 +27,21 @@ namespace Project.Api.Controllers
             var detectedValues = _categoryService.TGetListAll();
             return Ok(_mapper.Map<List<ResultCategoryDto>>(detectedValues));
         }
+        [HttpGet("CategoryCount")]
+        public IActionResult CategoryCount()
+        {
+            return Ok(_categoryService.TCategoryCount());
+        }
+        [HttpGet("CategoryActiveCount")]
+        public IActionResult CategoryActiveCount()
+        {
+            return Ok(_categoryService.TCategoryActiveCount());
+        }
+        [HttpGet("CategoryPassiveCount")]
+        public IActionResult CategoryPassiveCount()
+        {
+            return Ok(_categoryService.TCategoryPassiveCount());
+        }
 
         [HttpPost]
         public IActionResult CategoryInsert(CreateCategoryDto createCategoryDto)

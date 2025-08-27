@@ -26,6 +26,22 @@ namespace Project.Api.Controllers
             var detectedValues = _productService.TGetListAll();
             return Ok(_mapper.Map<List<ResultProductDto>>(detectedValues));
         }
+        [HttpGet("ProductCount")]
+        public IActionResult ProductCount()
+        {  
+            return Ok(_productService.TProductCount());
+        }
+
+        [HttpGet("ProductWithCategoryNameHamburger")]
+        public IActionResult ProductWithCategoryNameHamburger()
+        {  
+            return Ok(_productService.TProductCountByCategoryNameHamburger());
+        }
+        [HttpGet("ProductWithCategoryNamePizza")]
+        public IActionResult ProductWithCategoryNamePizza()
+        {  
+            return Ok(_productService.TProductCountByCategoryNamePizza());
+        }
 
         [HttpPost]
         public IActionResult ProductInsert(CreateProductDto createProductDto)

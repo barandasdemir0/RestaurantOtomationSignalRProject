@@ -19,8 +19,32 @@ namespace Project.DataAccessLayer.EntityFramework
 
         public List<Product> GetProductsWithCategories()
         {
-            var context = new SignalRContext();
+            using var context = new SignalRContext();
             return context.Products.Include(x=>x.Category).ToList();
+
+        }
+
+        public int ProductCount()
+        {
+            using var context = new SignalRContext();
+            return context.Products.Count();
+        }
+
+        public int ProductCountByCategoryNameHamburger()
+        {
+            using var context = new SignalRContext();
+            return context.Products
+               .Where(x => x.Category != null && x.Category.CategoryName == "Hamburger")
+               .Count();
+
+        }
+
+        public int ProductCountByCategoryNamePizza()
+        {
+            using var context = new SignalRContext();
+            return context.Products
+              .Where(x => x.Category != null && x.Category.CategoryName == "Pizza")
+              .Count();
 
         }
     }

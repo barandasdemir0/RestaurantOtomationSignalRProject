@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace Project.DataAccessLayer.Abstract
 {
-    public interface ICategoryDal:IGenericDal<Category>
+    public interface ICategoryDal : IGenericDal<Category>
     {
-        
+        int CategoryCount();
+        int CategoryActiveCount();
+        int CategoryPassiveCount();
     }
 }

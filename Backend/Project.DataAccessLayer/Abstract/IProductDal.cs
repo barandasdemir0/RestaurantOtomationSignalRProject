@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace Project.DataAccessLayer.Abstract
 {
-    public interface IProductDal:IGenericDal<Product>
+    public interface IProductDal : IGenericDal<Product>
     {
         List<Product> GetProductsWithCategories();
+        int ProductCount();
+        int ProductCountByCategoryNameHamburger();
+        int ProductCountByCategoryNamePizza();
     }
 }

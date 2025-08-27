@@ -18,6 +18,21 @@ namespace Project.BusinessLayer.Concrete
             _categoryDal = categoryDal;
         }
 
+        public int TCategoryActiveCount()
+        {
+            return _categoryDal.CategoryActiveCount();
+        }
+
+        public int TCategoryCount()
+        {
+          return  _categoryDal.CategoryCount();
+        }
+
+        public int TCategoryPassiveCount()
+        {
+            return _categoryDal.CategoryPassiveCount();
+        }
+
         public void TDelete(Category entity)
         {
             _categoryDal.Delete(entity);

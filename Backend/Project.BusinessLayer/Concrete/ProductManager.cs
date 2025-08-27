@@ -43,6 +43,21 @@ namespace Project.BusinessLayer.Concrete
             _productDal.Insert(entity);
         }
 
+        public int TProductCount()
+        {
+           return _productDal.ProductCount();
+        }
+
+        public int TProductCountByCategoryNameHamburger()
+        {
+            return _productDal.ProductCountByCategoryNameHamburger();
+        }
+
+        public int TProductCountByCategoryNamePizza()
+        {
+           return _productDal.ProductCountByCategoryNamePizza();
+        }
+
         public void TUpdate(Product entity)
         {
             _productDal.Update(entity);

@@ -17,6 +17,26 @@ namespace Project.DataAccessLayer.EntityFramework
         {
         }
 
-       
+        public int CategoryActiveCount()
+        {
+            using var context = new SignalRContext();
+            return context.Categories.Count(x => x.CategoryStatus == true);
+            
+        }
+
+        public int CategoryCount()
+        {
+            using var context = new SignalRContext(); //--> kod bittiğinde yani scope dışına çıktısında dispose yapılır ve sistem yorumaz
+            //var context = new SignalRContext();  --> bunu kullanmamamızın  sebebi dispose etmezsek hala enerji tükertir
+            return context.Categories.Count();
+            
+    }
+
+        public int CategoryPassiveCount()
+        {
+            using var context = new SignalRContext();
+            return context.Categories.Count(x => x.CategoryStatus == false);
+            
+        }
     }
 }
