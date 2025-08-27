@@ -1,3 +1,4 @@
+using Project.Api.Hubs;
 using Project.BusinessLayer.Abstract;
 using Project.BusinessLayer.Concrete;
 using Project.BusinessLayer.Container;
@@ -11,6 +12,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SignalRContext>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.ContainerDependencies();//böylelikle container oluyor
+
+
+//cors politikas? ve signal r kütüphanesi
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed((host) => true).AllowCredentials();
+    });
+});
+
+builder.Services.AddSignalR();
 
 
 // Add services to the container.
@@ -33,10 +46,14 @@ if (app.Environment.IsDevelopment())
 
 }
 
+app.UseCors("CorsPolicy");//corsu buradan ça??rd?k
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<SignalRHub>("/signalrhub");//buras? bir yere istek gönderdi?imiz yer category/?ndex yerine signalrhub gönder gibi
 
 app.Run();
