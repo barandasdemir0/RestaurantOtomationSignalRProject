@@ -78,8 +78,21 @@ namespace Project.Api.Hubs
 
 
         }
-     
-      
+
+        public async Task SendProgress()
+        {
+
+            var values = _moneyCaseService.TTotalMoneyCaseAmount();
+            await Clients.All.SendAsync("TTotalMoneyCaseAmount", values.ToString("0.00₺"));
+
+            var values2 = _orderService.TActiveOrderCount();
+            await Clients.All.SendAsync("TActiveOrderCount", values2);
+
+            var values3 = _menuTablesService.TMenuTableCount();
+            await Clients.All.SendAsync("TMenuTableCount", values3);
+
+
+        }
     }
 }
 //hub burada sunucu görevi görür değitim işlemi buradan olacak
