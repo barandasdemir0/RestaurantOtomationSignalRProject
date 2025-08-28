@@ -43,6 +43,28 @@ namespace Project.Api.Controllers
             return Ok(_productService.TProductCountByCategoryNamePizza());
         }
 
+        [HttpGet("ProductPriceAvg")]
+        public IActionResult ProductPriceAvg()
+        {  
+            return Ok(_productService.TProductPriceAverage());
+        }
+        [HttpGet("ProductPriceByMax")]
+        public IActionResult ProductPriceByMax()
+        {  
+            return Ok(_productService.TProductPriceByMax());
+        }
+        [HttpGet("ProductPriceByMin")]
+        public IActionResult ProductPriceByMin()
+        {  
+            return Ok(_productService.TProductPriceByMin());
+        }
+
+        [HttpGet("ProductPriceByHamburger")]
+        public IActionResult ProductPriceByHamburger()
+        {  
+            return Ok(_productService.TProductPriceByHamburger());
+        }
+
         [HttpPost]
         public IActionResult ProductInsert(CreateProductDto createProductDto)
         {

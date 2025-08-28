@@ -13,9 +13,11 @@ namespace Project.DataAccessLayer.EntityFramework
 {
     public class EfProductDal : GenericRepository<Product>, IProductDal
     {
+
         public EfProductDal(SignalRContext context) : base(context)
         {
         }
+
 
         public List<Product> GetProductsWithCategories()
         {
@@ -46,6 +48,33 @@ namespace Project.DataAccessLayer.EntityFramework
               .Where(x => x.Category != null && x.Category.CategoryName == "Pizza")
               .Count();
 
+        }
+
+      
+
+        public decimal ProductPriceAverage()
+        {
+            using var context = new SignalRContext();
+            return context.Products.Average(x=>x.ProductPrice);
+        }
+
+        public decimal ProductPriceByHamburger()
+        {
+            using var context = new SignalRContext();
+            return context.Products.Where(x=>x.Category !=null &&x.Category.CategoryName == "Hamburger").Average(x=>x.ProductPrice);
+        }
+
+        public string ProductPriceByMax()
+        {
+            using var context = new SignalRContext();
+            return context.Products.OrderByDescending(x => x.ProductPrice).Select(y => y.ProductName).FirstOrDefault() ?? "Ürün bulunamadı";
+
+        }
+
+        public string ProductPriceByMin()
+        {
+            using var context = new SignalRContext();
+            return context.Products.OrderBy(x => x.ProductPrice).Select(y => y.ProductName).FirstOrDefault() ?? "Ürün bulunamadı";
         }
     }
 }

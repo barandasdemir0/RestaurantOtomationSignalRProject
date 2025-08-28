@@ -13,5 +13,9 @@ namespace Project.BusinessLayer.Abstract
         int TProductCount();
         int TProductCountByCategoryNameHamburger();
         int TProductCountByCategoryNamePizza();
+        decimal TProductPriceAverage();
+        string TProductPriceByMax();
+        string TProductPriceByMin();
+        decimal TProductPriceByHamburger();
     }
 }
