@@ -1,0 +1,34 @@
+--ORDERDETAÝLSDE GÝRDÝKÇE ORDERA FÝYATI ARTTIRAN TRÝGGERLAR ve moneycases da artan para 
+
+--Create Trigger IncreaseOrderTotalPrice
+--On OrderDetails
+--after Insert
+--as
+--Declare @OrderID int
+--Declare @OrderPrice decimal
+--select @OrderID = OrderID from inserted 
+--select @OrderPrice = TotalPrice from inserted
+--Update Orders set TotalPrice = TotalPrice + @OrderPrice where OrderID = @OrderID
+
+--After Trigger DecreaseOrderTotalPrice
+--On OrderDetails
+--after Delete
+--as
+--Declare @OrderID int
+--Declare @OrderPrice decimal
+--select @OrderID = OrderID from deleted 
+--select @OrderPrice = TotalPrice from deleted
+--Update Orders set TotalPrice = TotalPrice - @OrderPrice where OrderID = @OrderID
+
+--Create Trigger SumMoneyCases
+--on Orders
+--after Update
+--as
+--declare @Description  nvarchar(max)
+--declare @TotalPrice decimal(18,2)
+--select @Description = Description from inserted
+--select @TotalPrice = TotalPrice from inserted
+--if(@Description='Hesap Kapatýldý')
+--begin
+--update MoneyCases  set TotalAmount = TotalAmount + @TotalPrice 
+--end

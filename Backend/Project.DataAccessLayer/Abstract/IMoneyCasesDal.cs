@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace Project.DataAccessLayer.Abstract
 {
-    public interface IOrderDal:IGenericDal<Order>
+    public interface IMoneyCasesDal:IGenericDal<MoneyCase>
     {
-        int TotalOrderCount();
-        int ActiveOrderCount();
-        decimal LastOrderPrice();
-        decimal TodayTotalPrice();
+        decimal TotalMoneyCaseAmount();
     }
 }

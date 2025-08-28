@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace Project.BusinessLayer.Abstract
 {
-    public interface IOrderService:IGenericService<Order>
+    public interface IMenuTablesService:IGenericService<MenuTable>
     {
-        int TTotalOrderCount();
-        int TActiveOrderCount();
-        decimal TLastOrderPrice();
-        decimal TTodayTotalPrice();
+        int TMenuTableCount();
     }
 }

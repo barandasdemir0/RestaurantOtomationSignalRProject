@@ -48,6 +48,12 @@ namespace Project.BusinessLayer.Container
             services.AddScoped<IOrderDetailService,OrderDetailManager>();
             services.AddScoped<IOrderDetailDal, EfOrderDetailDal>();
 
+            services.AddScoped<IMoneyCaseService,MoneyCaseManager>();
+            services.AddScoped<IMoneyCasesDal, EfMoneyCaseDal>();
+
+            services.AddScoped<IMenuTablesService,MenuTableManager>();
+            services.AddScoped<IMenuTablesDal, EfMenuTablesDal>();
+
 
 
 
