@@ -12,13 +12,9 @@ namespace Project.WebUI.Dtos.ContactDtos
         public string? ContactPhone { get; set; }
         public string? ContactMail { get; set; }
         public string? FooterDescription { get; set; }
-        public string? FooterOpenDayMonday { get; set; }
-        public string? FooterOpenTuesday { get; set; }
-        public string? FooterOpenWednesday { get; set; }
-        public string? FooterOpenThursday { get; set; }
-        public string? FooterOpenFriday { get; set; }
-        public string? FooterOpenSaturday { get; set; }
-        public string? FooterOpenSunday { get; set; }
-        public string? FooterOpenSpecialDay { get; set; }
+        public string? OpenDays { get; set; }
+        public string? OpenDaysDescription { get; set; }
+        public string? OpenHours { get; set; }
+
     }
 }

@@ -22,7 +22,7 @@ namespace Project.DataAccessLayer.EntityFramework
         public List<Product> GetProductsWithCategories()
         {
             using var context = new SignalRContext();
-            return context.Products.Include(x=>x.Category).ToList();
+            return context.Products.Include(x=>x.Category).Take(6).ToList();
 
         }
 

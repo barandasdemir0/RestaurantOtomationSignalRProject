@@ -9,5 +9,7 @@
         public string? ProductImageUrl { get; set; }
         public bool ProductStatus { get; set; }
         public string? CategoryCategoryName { get; set; }
+
+
     }
 }
