@@ -3,13 +3,14 @@ using Newtonsoft.Json;
 using Project.WebUI.Dtos.CategoryDtos;
 using Project.WebUI.Dtos.ProductDtos;
 using Project.WebUI.Models;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Project.WebUI.ViewComponents.DefaultComponents
 {
     public class _DefaultOurMenuComponentPartial : ViewComponent
     {
-
         private readonly IHttpClientFactory _httpClientFactory;
 
         public _DefaultOurMenuComponentPartial(IHttpClientFactory httpClientFactory)
@@ -31,7 +32,7 @@ namespace Project.WebUI.ViewComponents.DefaultComponents
 
             var viewModel = new ProductWithCategoryViewModel
             {
-                Categories =  convertData2,
+                Categories = convertData2,
                 Products = convertData,
             };
 

@@ -22,19 +22,19 @@ namespace Project.WebUI.Controllers
             var convertString = await pullData.Content.ReadAsStringAsync();
             var convertData = JsonConvert.DeserializeObject<List<ResultProductDto>>(convertString);
 
-            //var client2 = _httpClientFactory.CreateClient();
-            //var pullData2 = await client2.GetAsync("https://localhost:7240/api/Category");
-            //var convertString2 = await pullData2.Content.ReadAsStringAsync();
-            //var convertData2 = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(convertString2);
+            var client2 = _httpClientFactory.CreateClient();
+            var pullData2 = await client2.GetAsync("https://localhost:7240/api/Category");
+            var convertString2 = await pullData2.Content.ReadAsStringAsync();
+            var convertData2 = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(convertString2);
 
-            //var viewModel = new ProductWithCategoryViewModel
-            //{
-            //    Categories = convertData2,
-            //    Products = convertData,
-            //};
+            var viewModel = new ProductWithCategoryViewModel
+            {
+                Categories = convertData2,
+                Products = convertData,
+            };
 
 
-            return View(convertData);
+            return View(viewModel);
         }
     }
 }

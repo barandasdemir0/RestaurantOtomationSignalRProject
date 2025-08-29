@@ -29,6 +29,11 @@ $(window).on('load', function () {
     })
 });
 
+
+
+
+
+
 // nice select
 $(document).ready(function() {
     $('select').niceSelect();
