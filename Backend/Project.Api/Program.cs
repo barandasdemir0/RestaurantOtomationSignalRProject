@@ -6,6 +6,7 @@ using Project.DataAccessLayer.Abstract;
 using Project.DataAccessLayer.Concrete;
 using Project.DataAccessLayer.EntityFramework;
 using System.Reflection;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,11 @@ builder.Services.AddCors(opt =>
         builder.AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed((host) => true).AllowCredentials();
     });
 });
+
+
+
+builder.Services.AddControllersWithViews()
+    .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddSignalR();
 

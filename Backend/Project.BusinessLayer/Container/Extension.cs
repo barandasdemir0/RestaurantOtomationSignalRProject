@@ -54,6 +54,9 @@ namespace Project.BusinessLayer.Container
             services.AddScoped<IMenuTablesService,MenuTableManager>();
             services.AddScoped<IMenuTablesDal, EfMenuTablesDal>();
 
+            services.AddScoped<IBasketService,BasketManager>();
+            services.AddScoped<IBasketDal, EfBasketDal>();
+
 
 
 

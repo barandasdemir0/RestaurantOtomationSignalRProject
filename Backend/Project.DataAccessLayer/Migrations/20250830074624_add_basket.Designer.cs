@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Project.DataAccessLayer.Concrete;
 
@@ -11,9 +12,11 @@ using Project.DataAccessLayer.Concrete;
 namespace Project.DataAccessLayer.Migrations
 {
     [DbContext(typeof(SignalRContext))]
-    partial class SignalRContextModelSnapshot : ModelSnapshot
+    [Migration("20250830074624_add_basket")]
+    partial class add_basket
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,17 +58,17 @@ namespace Project.DataAccessLayer.Migrations
                     b.Property<int>("MenuTableID")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("ProductCount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("ProductCount")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProductID")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("ProductPrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("ProductPrice")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("ProductTotalPrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("ProductTotalPrice")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BasketID");
 
