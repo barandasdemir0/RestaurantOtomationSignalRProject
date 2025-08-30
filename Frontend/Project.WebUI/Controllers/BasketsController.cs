@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Project.WebUI.Dtos.AboutDtos;
 using Project.WebUI.Dtos.BasketDtos;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Project.WebUI.Controllers
@@ -29,5 +30,18 @@ namespace Project.WebUI.Controllers
             }
             return View();
         }
+        public async Task<IActionResult> BasketDelete(int id)
+        {
+             id = TempData["id"] != null ? Convert.ToInt32(TempData["id"]) : 0;
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.DeleteAsync($"https://localhost:7240/api/Basket/{id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return NoContent();
+        }
+
+
     }
 }

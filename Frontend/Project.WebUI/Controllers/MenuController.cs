@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Project.WebUI.Dtos.BasketDtos;
 using Project.WebUI.Dtos.CategoryDtos;
 using Project.WebUI.Dtos.ProductDtos;
 using Project.WebUI.Models;
+using System.Text;
 
 namespace Project.WebUI.Controllers
 {
@@ -35,6 +37,22 @@ namespace Project.WebUI.Controllers
 
 
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> BasketAdd(int id)
+        {
+            CreateBasketDto createBasketDto = new CreateBasketDto();
+            createBasketDto.ProductID = id;
+            var client = _httpClientFactory.CreateClient();
+            var serealizeData = JsonConvert.SerializeObject(createBasketDto);
+            StringContent stringContent = new StringContent(serealizeData, Encoding.UTF8, "application/json");
+            var sendData = await client.PostAsync("https://localhost:7240/api/Baskets/GetBasketsByMenuTableWithProductName?id=1", stringContent);
+            if (sendData.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return Json(createBasketDto);
         }
     }
 }

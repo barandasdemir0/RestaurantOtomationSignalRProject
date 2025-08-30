@@ -59,7 +59,7 @@
                                                 <h6>
                                                     @product.ProductPrice ₺
                                                 </h6>
-                                                <a href="">
+                                                <a href="" onclick="showproductid(@product.ProductID)" id="@product.ProductID">
                                                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456 456" style="enable-background:new 0 0 456 456;" xml:space="preserve">
                                                     <g>
                                                     <g>
@@ -101,16 +101,16 @@
 
     <script>
 
-        function showproductid(productId, menuTableId) {
+        function showproductid(ProductID, MenuTableID) {
             $.ajax({
                 type: 'POST',
-                url: "/Menu/AddBasket",
+                url: "/Menu/BasketAdd",
                 data: {
-                    id: productId,
-                    menuTableId: menuTableId // MenuTableId burada gönderiliyor
+                    id: ProductID,
+                    menuTableId: MenuTableID // MenuTableId burada gönderiliyor
                 },
                 success: function () {
-                    swal("Seçilen Ürün ID:" + productId, "Seçtiğiniz Ürün Sepete Eklendi!", "success");
+                    swal("Seçilen Ürün ID:" + ProductID, "Seçtiğiniz Ürün Sepete Eklendi!", "success");
                 },
                 error: function (xhr, status, error) {
                     console.error("Hata:", error);

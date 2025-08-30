@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Project.Api.Models;
 using Project.BusinessLayer.Abstract;
 using Project.DataAccessLayer.Concrete;
+using Project.DtoLayer.AboutDto;
+using Project.DtoLayer.BasketDto;
+using Project.EntityLayer.Concrete;
 
 namespace Project.Api.Controllers
 {
@@ -44,5 +47,22 @@ namespace Project.Api.Controllers
             }).ToList();
             return Ok(values);
         }
+
+        [HttpPost]
+        public IActionResult BasketAdd(CreateBasketDto createBasketDto)
+        {
+            var detectedValues = _mapper.Map<Basket>(createBasketDto);
+            _basketService.TInsert(detectedValues);
+            return Ok("Hakkımda Kısmı Başarılı Bir Şekilde Eklendi");
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteBasket(int id)
+        {
+            var value = _basketService.TGetByID(id);
+            _basketService.TDelete(value!);
+            return Ok("Sepetteki Seçilen Ürün Silindi");
+        }
+
     }
 }
