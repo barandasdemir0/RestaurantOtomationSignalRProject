@@ -1,0 +1,38 @@
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Project.EntityLayer.Concrete;
+using Project.WebUI.Dtos.IdentityDtos;
+using System.Threading.Tasks;
+
+namespace Project.WebUI.Controllers
+{
+    public class LoginController : Controller
+    {
+
+        private readonly SignInManager<AppUser>  _signInManager;
+
+        public LoginController(SignInManager<AppUser> signInManager)
+        {
+            _signInManager = signInManager;
+        }
+
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Index(LoginDto loginDto)
+        {
+
+            var result = await _signInManager.PasswordSignInAsync(loginDto.Username!,loginDto.Password!,false,false);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("TableListByStatus", "MenuTables");
+                //return RedirectToAction("Index", "Category");
+            }
+
+            return View();
+        }
+    }
+}

@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Project.WebUI.Dtos.MenuTableDto;
 using System.Text;
 
 namespace Project.WebUI.Controllers
 {
+
     public class MenuTablesController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
