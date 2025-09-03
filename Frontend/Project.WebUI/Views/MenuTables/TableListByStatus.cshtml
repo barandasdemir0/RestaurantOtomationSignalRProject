@@ -27,7 +27,7 @@
 
                 }).catch((err) => { console.log(err) });
 
-              connection.on("ReceiveMenuTableStatus", (value) => {
+                             connection.on("ReceiveMenuTableStatus", (value) => {
                     var color = "";
                     var status = "";
                     console.log(value);
@@ -67,8 +67,6 @@
                     $("#statuslist").html(tablehtml);
                 });
             });
-
-
 
                
 

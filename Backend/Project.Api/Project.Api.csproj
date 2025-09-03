@@ -20,6 +20,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.3" />
   </ItemGroup>
 
@@ -28,6 +29,10 @@
     <ProjectReference Include="..\Project.DataAccessLayer\Project.DataAccessLayer.csproj" />
     <ProjectReference Include="..\Project.DtoLayer\Project.DtoLayer.csproj" />
     <ProjectReference Include="..\Project.EntityLayer\Project.EntityLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\" />
   </ItemGroup>
 
 </Project>
