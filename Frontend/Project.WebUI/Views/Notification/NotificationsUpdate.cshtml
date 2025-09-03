@@ -1,0 +1,57 @@
+﻿@model UpdateNotificationDto
+@{
+    ViewData["Title"] = "NotificationsUpdate";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Bildirim İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="card">
+
+                        <input type="hidden" asp-for="NotificationID" />
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Bildirim Başlığı</label>
+                                <input type="text" class="form-control" asp-for="Description" placeholder="Bildirim Başlığı">
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Bildirim Türü</label>
+                                <input type="text" class="form-control" asp-for="Type" placeholder="Bildirim Türü">
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Bildirim Icon</label>
+                                <input type="text" class="form-control" asp-for="Icon" placeholder="Bildirim Icon">
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Bildirim Tarih</label>
+                                <input type="date" class="form-control" asp-for="Date" placeholder="Bildirim Tarih">
+                            </div>
+                        </div>
+
+
+                        <div class="card-action">
+                            <button class="btn btn-outline-primary">Güncelle</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
