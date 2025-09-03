@@ -114,6 +114,13 @@ namespace Project.Api.Hubs
             await Clients.All.SendAsync("ReceiveNotificationAllListFalse", values2);
         }
 
+        public async Task GetMenuTableStatus()
+        {
+            var value = _menuTablesService.TGetListAll();
+            await Clients.All.SendAsync("ReceiveMenuTableStatus", value);
+        }
+
+
     }
 }
 //hub burada sunucu görevi görür dağitim işlemi buradan olacak
