@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Project.BusinessLayer.Abstract;
 using Project.WebUI.Dtos.BookingDtos;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,7 +42,7 @@ namespace Project.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> BookingCreate(CreateBookingDto createBookingDto)
         {
-
+            createBookingDto.BookingDescription = "Rezervasyon Alındı";
             var client = _httpClientFactory.CreateClient();
             var makeSerialize = JsonConvert.SerializeObject(createBookingDto);
             StringContent content = new StringContent(makeSerialize, Encoding.UTF8, "application/json");
@@ -79,15 +80,16 @@ namespace Project.WebUI.Controllers
                 return View(serializeData);
             }
             return View();
-           
+
         }
 
         [HttpPost]
         public async Task<IActionResult> BookingUpdate(UpdateBookingDto updateBookingDto)
         {
+            updateBookingDto.BookingDescription = "Rezervasyon Alındı";
             var client = _httpClientFactory.CreateClient();
             var serializeObject = JsonConvert.SerializeObject(updateBookingDto);
-            StringContent content = new StringContent(serializeObject,Encoding.UTF8,"application/json");
+            StringContent content = new StringContent(serializeObject, Encoding.UTF8, "application/json");
             var sendData = await client.PutAsync("https://localhost:7240/api/Booking", content);
             if (sendData.IsSuccessStatusCode)
             {
@@ -96,7 +98,26 @@ namespace Project.WebUI.Controllers
 
 
             return View();
-           
+
+        }
+
+
+
+
+        public async Task<IActionResult> BookingStatusApproved(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            await client.GetAsync($"https://localhost:7240/api/Booking/BookingStatusApproved/{id}");
+            return RedirectToAction("Index");
+
+
+        }
+
+        public async Task<IActionResult> BookingStatusCanceled(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            await client.GetAsync($"https://localhost:7240/api/Booking/BookingStatusCanceled/{id}");
+            return RedirectToAction("Index");
         }
 
     }

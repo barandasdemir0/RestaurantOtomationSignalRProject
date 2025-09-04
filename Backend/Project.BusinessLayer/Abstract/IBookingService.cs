@@ -9,5 +9,7 @@ namespace Project.BusinessLayer.Abstract
 {
     public interface IBookingService : IGenericService<Booking>
     {
+        void TBookingStatusApprove(int id);
+        void TBookingStatusCanceled(int id);
     }
 }

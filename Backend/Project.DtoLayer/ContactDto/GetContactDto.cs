@@ -17,5 +17,6 @@ namespace Project.DtoLayer.ContactDto
         public string? OpenDaysDescription { get; set; }
         public string? OpenHours { get; set; }
 
+
     }
 }

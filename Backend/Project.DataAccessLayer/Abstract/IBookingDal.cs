@@ -9,5 +9,8 @@ namespace Project.DataAccessLayer.Abstract
 {
     public interface IBookingDal:IGenericDal<Booking>
     {
+
+        void BookingStatusApprove(int id);
+        void BookingStatusCanceled(int id);
     }
 }

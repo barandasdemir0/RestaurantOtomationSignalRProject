@@ -47,11 +47,11 @@
                                     <td>${item.bookingName}</td>
                                     <td>${item.bookingPhone}</td>
                                     <td>${item.bookingPersonCount}</td>
-                                    <td>${"Rezervasyon Alındı"}</td>
+                                    <td>${item.bookingDescription}</td>
                                     <td><a href="/Booking/BookingDelete/${item.bookingID}" class="btn btn-outline-danger">Sil</a></td>
                                     <td><a href="/Booking/BookingUpdate/${item.bookingID}" class="btn btn-outline-success">Güncelle</a></td>
                                     <td><a href="/Booking/BookingStatusApproved/${item.bookingID}" class="btn btn-outline-info">Onayla</a></td>
-                                    <td><a href="/Booking/BookingStatusCancelled/${item.bookingID}" class="btn btn-outline-dark">İptal Et</a></td>
+                                    <td><a href="/Booking/BookingStatusCanceled/${item.bookingID}" class="btn btn-outline-dark">İptal Et</a></td>
                                     </tr>`
                     });
                     tablehtml += "</tbody></table>";

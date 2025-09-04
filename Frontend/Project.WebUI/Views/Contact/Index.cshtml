@@ -44,7 +44,18 @@
 								}
 							</tbody>
 						</table>
-						<a href="/Contact/ContactCreate/" class="btn btn-outline-primary">Yeni İletişim Yazısı Girişi</a>
+
+						@if (Model.Count < 1)
+						{
+							<a href="/Contact/ContactCreate/" class="btn btn-outline-primary">Yeni İletişim Yazısı Girişi</a>
+						}
+						@if (Model.Count > 1)
+						{
+							<div class="card-sub">
+								Tema Bütünlüğü için Lütfen 1 tane İletişim bölümü oluşturun daha fazlasını Açarsanız yaşanacak sorundan sorumluluk kabul etmeyiz.
+							</div>
+						}
+						
 					</div>
 				</div>
 			</div>

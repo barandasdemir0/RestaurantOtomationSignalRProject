@@ -89,7 +89,7 @@ namespace Project.WebUI.Controllers
                 .Select(g => g.First()) 
                 .ToList();
 
-            // Null gelmemesi için SelectList ile sarıyoruz
+           
             ViewBag.NotificationTypes = typeValues;
             ViewBag.NotificationIcons = iconValues;
 
@@ -137,6 +137,8 @@ namespace Project.WebUI.Controllers
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<UpdateNotificationDto>(jsonData);
+
+
 
             
                 return View(values);

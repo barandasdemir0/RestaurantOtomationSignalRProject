@@ -152,6 +152,8 @@ namespace Project.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> ProductUpdate(UpdateProductDto updateProductDto)
         {
+
+            updateProductDto.ProductStatus = true;
             var client = _httpClientFactory.CreateClient(); 
             var jsonData = JsonConvert.SerializeObject(updateProductDto);//giden veriyi bu formata sok
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");//nasıl gideceğini söyle

@@ -27,6 +27,20 @@ namespace Project.Api.Controllers
             return Ok(_mapper.Map<List<ResultDiscountDto>>(detectedValues));
         }
 
+        [HttpGet("ChangeStatusToTrue/{id}")]
+        public IActionResult ChangeStatusToTrue(int id)
+        {
+            _discountService.TChangeStatusToTrue(id);
+            return Ok("Veri Başarıyla Güncellendi");
+        }
+
+        [HttpGet("ChangeStatusToFalse/{id}")]
+        public IActionResult ChangeStatusToFalse(int id)
+        {
+            _discountService.TChangeStatusToFalse(id);
+            return Ok("Veri Başarıyla Güncellendi");
+        }
+
         [HttpPost]
         public IActionResult DiscountInsert(CreateDiscountDto createDiscountDto)
         {

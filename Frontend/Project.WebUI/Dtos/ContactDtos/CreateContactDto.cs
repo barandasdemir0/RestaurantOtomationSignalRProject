@@ -16,5 +16,6 @@ namespace Project.WebUI.Dtos.ContactDtos
         public string? OpenDaysDescription { get; set; }
         public string? OpenHours { get; set; }
 
+
     }
 }

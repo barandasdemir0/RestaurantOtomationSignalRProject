@@ -49,16 +49,18 @@
 								}
 							</tbody>
 						</table>
-						@if (Model.Count<=2)
-						{
-							<a href="/Discount/DiscountCreate/" class="btn btn-outline-primary">Yeni İndirimli Ürün Girişi</a>
-						}
-						@if (Model.Count>3)
-						{
-							<div class="card-sub">
-								Günün İndirimli Ürünleri Aşağıda Yer Almaktadır. Tema Bütünlüğü İçin <strong>2 Adet</strong> İndirimli Ürün Seçiniz.
-							</div>
-						}
+						
+							@if (Model.Count < 2 )
+							{
+								<a href="/Discount/DiscountCreate/" class="btn btn-outline-primary">Yeni İndirimli Ürün Girişi</a>
+							}
+							@if (Model.Count > 3)
+							{
+								<div class="card-sub">
+									Günün İndirimli Ürünleri Aşağıda Yer Almaktadır. Tema Bütünlüğü İçin <strong>2 Adet</strong> İndirimli Ürün Seçiniz.
+								</div>
+							}
+									
 						
 					</div>
 				</div>

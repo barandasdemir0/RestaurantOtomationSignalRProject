@@ -23,11 +23,33 @@ namespace Project.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult BookingList() 
+        public IActionResult BookingList()
         {
             var detectedValues = _bookingService.TGetListAll();
-            return Ok (_mapper.Map<List<ResultBookingDto>>(detectedValues));
+            return Ok(_mapper.Map<List<ResultBookingDto>>(detectedValues));
         }
+
+        [HttpGet("BookingStatusApproved/{id}")]
+        public IActionResult BookingStatusApproved(int id)
+        {
+            _bookingService.TBookingStatusApprove(id);
+            return Ok("Rezervasyon Açıklaması Değiştirildi ");
+        }
+        [HttpGet("BookingStatusCanceled/{id}")]
+        public IActionResult BookingStatusCanceled(int id)
+        {
+            _bookingService.TBookingStatusCanceled(id);
+            return Ok("Rezervasyon Açıklaması Değiştirildi ");
+        }
+
+
+
+
+
+
+
+
+
 
         [HttpPost]
         public IActionResult BookingInsert(CreateBookingDto createBookingDto)
@@ -37,6 +59,7 @@ namespace Project.Api.Controllers
             _bookingService.TInsert(detectedValues);
             return Ok("Rezervasyon Başarıyla eklendi");
         }
+
         [HttpDelete("{id}")]
         public IActionResult BookingDelete(int id)
         {
