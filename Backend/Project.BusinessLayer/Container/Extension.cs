@@ -60,6 +60,9 @@ namespace Project.BusinessLayer.Container
             services.AddScoped<INotificationService,NotificationManager>();
             services.AddScoped<INotificationDal, EfNotificationDal>();
 
+            services.AddScoped<IMessageService,MessageManager>();
+            services.AddScoped<IMessageDal, EfMessageDal>();
+
 
 
 
