@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Project.EntityLayer.Concrete;
 using Project.WebUI.Dtos.IdentityDtos;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project.WebUI.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
 

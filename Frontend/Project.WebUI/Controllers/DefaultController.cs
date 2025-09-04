@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Project.WebUI.Dtos.MessageDtos;
 using System.Net.Http;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project.WebUI.Controllers
 {
+    [AllowAnonymous]
     public class DefaultController : Controller
     {
 
