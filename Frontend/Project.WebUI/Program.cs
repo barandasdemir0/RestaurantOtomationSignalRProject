@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpClient();
 builder.Services.AddDbContext<SignalRContext>();
-builder.Services.AddIdentity<AppUser,AppRole>().AddEntityFrameworkStores<SignalRContext>();
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<SignalRContext>();
 
 // Add services to the container.
 //builder.Services.AddControllersWithViews(opt =>
@@ -24,6 +24,15 @@ builder.Services.AddControllersWithViews();
 //});
 
 var app = builder.Build();
+
+
+app.UseStatusCodePages(async codeStatus =>
+{
+    if (codeStatus.HttpContext.Response.StatusCode == 404)
+    {
+        codeStatus.HttpContext.Response.Redirect("/Error/Page404/");
+    }
+});
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
