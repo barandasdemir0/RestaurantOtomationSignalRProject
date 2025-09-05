@@ -37,7 +37,7 @@ namespace Project.Api.Controllers
         [HttpPost]
         public IActionResult MenuTableInsert(CreateMenuTableDto createMenuTableDto)
         {
-
+            createMenuTableDto.Status = true;
             var detectedValues = _mapper.Map<MenuTable>(createMenuTableDto);
             _menuTablesService.TInsert(detectedValues);
             return Ok("Masa  Kısmı Başarılı Bir Şekilde Eklendi");
