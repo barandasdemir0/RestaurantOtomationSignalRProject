@@ -37,7 +37,7 @@ app.UseStatusCodePages( async  codeStatus =>
 {
     if (codeStatus.HttpContext.Response.StatusCode == 404)
     {
-        codeStatus.HttpContext.Response.Redirect("/Error/Page404/");
+        codeStatus.HttpContext.Response.Redirect("/Default/Index/");
     }
 });
 
