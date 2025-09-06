@@ -36,10 +36,18 @@ namespace Project.WebUI.Controllers
             else
             {
                 var errorContent = await sendData.Content.ReadAsStringAsync();
-                ModelState.AddModelError(string.Empty, errorContent);
+                var errors = JsonConvert.DeserializeObject<ValidationProblemDetails>(errorContent);
+                foreach (var error in errors.Errors)
+                {
+                    foreach (var errorMsg in error.Value)
+                    {
+                        ModelState.AddModelError(error.Key, errorMsg);
+                    }
+                }
+
             }
 
-                return View();
+            return View();
 
         }
     }

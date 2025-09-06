@@ -32,7 +32,9 @@ builder.Services.AddFluentValidationAutoValidation(config =>
     config.DisableDataAnnotationsValidation = true;
 });
 
-builder.Services.AddValidatorsFromAssemblyContaining<CreateBookingValidation>();
+//builder.Services.AddValidatorsFromAssemblyContaining<CreateBookingValidation>();
+builder.Services.AddValidatorsFromAssembly(typeof(CreateBookingValidation).Assembly);
+
 
 
 builder.Services.AddControllersWithViews()

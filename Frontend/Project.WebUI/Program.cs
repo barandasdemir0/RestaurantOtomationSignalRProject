@@ -1,7 +1,9 @@
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Project.DataAccessLayer.Concrete;
+using Project.DtoLayer.BookingDto;
 using Project.EntityLayer.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +24,11 @@ builder.Services.AddControllersWithViews();
 //{
 //    x.LoginPath = "/Login/Index";
 //});
+
+
+builder.Services.AddControllersWithViews()
+    .AddFluentValidation(fv =>
+        fv.RegisterValidatorsFromAssemblyContaining<CreateBookingDto>());
 
 var app = builder.Build();
 

@@ -18,7 +18,7 @@
                 <div class="col-md-6">
                     <div class="form_container">
                         <form method="post">
-                            <div asp-validation-summary="All" class="text-danger"></div>
+                           @*  <div asp-validation-summary="All" class="text-danger"></div> *@
                             <div>
                                 <input type="text" class="form-control" placeholder="İsim Ve Soyisim" asp-for="BookingName" />
                                 <span asp-validation-for="BookingName" class="text-danger"></span>
@@ -33,7 +33,7 @@
                             </div>
                             <div>
                                 <select class="form-control nice-select wide" asp-for="BookingPersonCount">
-                                    <span asp-validation-for="BookingPersonCount" class="text-danger"></span>
+                                   
                                     <option value="" disabled selected>
                                         Kaç Kişisiniz?
                                     </option>
@@ -55,7 +55,9 @@
                                     <option value="6">
                                         6 kişi ve fazlası
                                     </option>
+
                                 </select>
+                                <span asp-validation-for="BookingPersonCount" class="text-danger"></span>
                             </div>
                             <div>
                                 <input type="date" class="form-control" asp-for="BookingDate">
@@ -82,3 +84,7 @@
     @await Component.InvokeAsync("_UILayoutScriptComponentPartials")
 </body>
 </html>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
