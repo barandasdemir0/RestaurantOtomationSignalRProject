@@ -71,7 +71,7 @@ namespace Project.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteBasket(int id)
+        public IActionResult BasketDelete(int id)
         {
             var value = _basketService.TGetByID(id);
             _basketService.TDelete(value!);

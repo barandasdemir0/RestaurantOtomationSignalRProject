@@ -26,6 +26,19 @@ namespace Project.Api.Controllers
             return Ok(_menuTablesService.TMenuTableCount());
         }
 
+        [HttpGet("ChangeMenuTableStatusToFalse")]
+        public IActionResult ChangeMenuTableStatusToFalse(int id)
+        {
+            _menuTablesService.TChangeMenuTableStatusToFalse(id);
+            return Ok("İşlem Başarılı");
+        }
+        [HttpGet("ChangeMenuTableStatusToTrue")]
+        public IActionResult ChangeMenuTableStatusToTrue(int id)
+        {
+            _menuTablesService.TChangeMenuTableStatusToTrue(id);
+            return Ok("İşlem Başarılı");
+        }
+
 
         [HttpGet]
         public IActionResult MenuTableList()

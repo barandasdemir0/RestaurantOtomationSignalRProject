@@ -10,5 +10,7 @@ namespace Project.DataAccessLayer.Abstract
     public interface IMenuTablesDal:IGenericDal<MenuTable>
     {
         int MenuTableCount();
+        void ChangeMenuTableStatusToTrue(int id);
+        void ChangeMenuTableStatusToFalse(int id);
     }
 }

@@ -18,6 +18,16 @@ namespace Project.BusinessLayer.Concrete
             _menuTablesDal = menuTablesDal;
         }
 
+        public void TChangeMenuTableStatusToFalse(int id)
+        {
+            _menuTablesDal.ChangeMenuTableStatusToFalse(id);
+        }
+
+        public void TChangeMenuTableStatusToTrue(int id)
+        {
+            _menuTablesDal.ChangeMenuTableStatusToTrue(id);
+        }
+
         public void TDelete(MenuTable entity)
         {
             _menuTablesDal.Delete(entity);

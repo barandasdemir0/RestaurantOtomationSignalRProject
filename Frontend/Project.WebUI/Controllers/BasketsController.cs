@@ -33,14 +33,15 @@ namespace Project.WebUI.Controllers
         }
         public async Task<IActionResult> BasketDelete(int id)
         {
-            id = int.Parse(TempData["id"].ToString());
+            int tableId  = int.Parse(TempData["id"].ToString());
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.DeleteAsync($"https://localhost:7240/api/Basket/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index",new {id=tableId});
             }
             return NoContent();
+
         }
 
 
