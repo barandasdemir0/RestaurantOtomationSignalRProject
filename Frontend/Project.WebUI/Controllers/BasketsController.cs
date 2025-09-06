@@ -35,7 +35,7 @@ namespace Project.WebUI.Controllers
         {
             int tableId  = int.Parse(TempData["id"].ToString());
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:7240/api/Basket/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:7240/api/Baskets/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index",new {id=tableId});
