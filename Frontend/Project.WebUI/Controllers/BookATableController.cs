@@ -24,7 +24,7 @@ namespace Project.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(CreateBookingDto createBookingDto)
         {
-
+            createBookingDto.BookingDescription = "Rezervasyon Alındı";
             var client = _httpClientFactory.CreateClient();
             var makeSerialize = JsonConvert.SerializeObject(createBookingDto);
             StringContent content = new StringContent(makeSerialize, Encoding.UTF8, "application/json");
@@ -33,8 +33,13 @@ namespace Project.WebUI.Controllers
             {
                 return RedirectToAction("Index");
             }
+            else
+            {
+                var errorContent = await sendData.Content.ReadAsStringAsync();
+                ModelState.AddModelError(string.Empty, errorContent);
+            }
 
-            return View();
+                return View();
 
         }
     }

@@ -1,7 +1,10 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Project.Api.Hubs;
 using Project.BusinessLayer.Abstract;
 using Project.BusinessLayer.Concrete;
 using Project.BusinessLayer.Container;
+using Project.BusinessLayer.ValidationRules.BookingValidations;
 using Project.DataAccessLayer.Abstract;
 using Project.DataAccessLayer.Concrete;
 using Project.DataAccessLayer.EntityFramework;
@@ -24,6 +27,12 @@ builder.Services.AddCors(opt =>
     });
 });
 
+builder.Services.AddFluentValidationAutoValidation(config =>
+{
+    config.DisableDataAnnotationsValidation = true;
+});
+
+builder.Services.AddValidatorsFromAssemblyContaining<CreateBookingValidation>();
 
 
 builder.Services.AddControllersWithViews()
