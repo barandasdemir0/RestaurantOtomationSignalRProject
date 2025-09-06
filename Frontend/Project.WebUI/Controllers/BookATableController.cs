@@ -37,7 +37,7 @@ namespace Project.WebUI.Controllers
             {
                 var errorContent = await sendData.Content.ReadAsStringAsync();
                 var errors = JsonConvert.DeserializeObject<ValidationProblemDetails>(errorContent);
-                foreach (var error in errors.Errors)
+                foreach (var error in errors!.Errors)
                 {
                     foreach (var errorMsg in error.Value)
                     {

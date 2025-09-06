@@ -21,7 +21,7 @@ namespace Project.WebUI.Controllers
         {
             var values = await _userManager.FindByNameAsync(User.Identity!.Name!);
             UserEditDto userEditDto = new UserEditDto();
-            userEditDto.Surname = values.Surname;
+            userEditDto.Surname = values!.Surname;
             userEditDto.Name = values.Name;
             userEditDto.Mail = values.Email;
             userEditDto.Username = values.UserName;
@@ -33,12 +33,12 @@ namespace Project.WebUI.Controllers
         {
             if (userEditDto.Password == userEditDto.ConfirmPassword)
             {
-                var user = await _userManager.FindByNameAsync(User.Identity.Name);
-                user.Surname = userEditDto.Surname;
+                var user = await _userManager.FindByNameAsync(User.Identity!.Name!);
+                user!.Surname = userEditDto.Surname;
                 user.Name = userEditDto.Name;
                 user.Email = userEditDto.Mail;
                 user.UserName = userEditDto.Username;
-                user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, userEditDto.Password);
+                user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, userEditDto.Password!);
                 var result = await _userManager.UpdateAsync(user);
                 return RedirectToAction("Index");
             }

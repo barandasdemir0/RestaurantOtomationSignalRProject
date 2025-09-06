@@ -17,10 +17,11 @@ namespace Project.WebUI.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int id)
         {
+            TempData["id"] = id;
             var client = _httpClientFactory.CreateClient();
-            var pullData = await client.GetAsync("https://localhost:7240/api/Baskets/GetBasketsByMenuTableWithProductName?id=1");
+            var pullData = await client.GetAsync("https://localhost:7240/api/Baskets/GetBasketsByMenuTableWithProductName?id=" + id);
             if (pullData.IsSuccessStatusCode)
             {
                 var convertString = await pullData.Content.ReadAsStringAsync();
@@ -32,7 +33,7 @@ namespace Project.WebUI.Controllers
         }
         public async Task<IActionResult> BasketDelete(int id)
         {
-             id = TempData["id"] != null ? Convert.ToInt32(TempData["id"]) : 0;
+            id = int.Parse(TempData["id"].ToString());
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.DeleteAsync($"https://localhost:7240/api/Basket/{id}");
             if (responseMessage.IsSuccessStatusCode)

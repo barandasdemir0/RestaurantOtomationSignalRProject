@@ -28,8 +28,8 @@ namespace Project.WebUI.Controllers
                 //var values = JsonConvert.DeserializeObject<List<ResultTastyApi>>(body);
                 //return View(values.ToList());
                 var root = JsonConvert.DeserializeObject<RootTastyApi>(body);
-                var values = root.Results;
-                return View(values.ToList());
+                var values = root!.Results;
+                return View(values!.ToList());
             }
         }
 

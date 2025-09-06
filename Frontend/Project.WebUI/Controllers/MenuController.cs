@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Project.EntityLayer.Concrete;
 using Project.WebUI.Dtos.BasketDtos;
 using Project.WebUI.Dtos.CategoryDtos;
 using Project.WebUI.Dtos.ProductDtos;
@@ -17,8 +18,9 @@ namespace Project.WebUI.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int id)
         {
+            ViewBag.v = id;
             var client = _httpClientFactory.CreateClient();
             var pullData = await client.GetAsync("https://localhost:7240/api/Product/ProductListWithCategory");
             var convertString = await pullData.Content.ReadAsStringAsync();
@@ -36,23 +38,51 @@ namespace Project.WebUI.Controllers
             };
 
 
+           
+
+
             return View(viewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> BasketAdd(int id)
+        public async Task<IActionResult> BasketAdd(int id, int menuTableId)
         {
-            CreateBasketDto createBasketDto = new CreateBasketDto();
-            createBasketDto.ProductID = id;
+
+            if (menuTableId == 0)
+            {
+                return BadRequest("MenuTableId 0 geliyor.");
+            }
+
+            CreateBasketDto createBasketDto = new CreateBasketDto
+            {
+                ProductID = id,
+                MenuTableID = menuTableId // Gelen MenuTableID burada kullanılıyor
+            };
+
+           
             var client = _httpClientFactory.CreateClient();
             var serealizeData = JsonConvert.SerializeObject(createBasketDto);
             StringContent stringContent = new StringContent(serealizeData, Encoding.UTF8, "application/json");
-            var sendData = await client.PostAsync("https://localhost:7240/api/Baskets/GetBasketsByMenuTableWithProductName?id=1", stringContent);
+            var sendData = await client.PostAsync("https://localhost:7240/api/Baskets/", stringContent);
+
+            var client2 = _httpClientFactory.CreateClient();
+            await client2.GetAsync("https://localhost:7240/api/MenuTables/ChangeMenuTableStatusToTrue?id=" + menuTableId);
+
             if (sendData.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
             }
             return Json(createBasketDto);
+
+
+
+           
+
+         
+          
+
+          
+
         }
     }
 }

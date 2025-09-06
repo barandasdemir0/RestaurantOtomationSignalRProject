@@ -26,14 +26,14 @@ builder.Services.AddControllersWithViews();
 //});
 
 
-builder.Services.AddControllersWithViews()
-    .AddFluentValidation(fv =>
-        fv.RegisterValidatorsFromAssemblyContaining<CreateBookingDto>());
+//builder.Services.AddControllersWithViews()
+//    .AddFluentValidation(fv =>
+//        fv.RegisterValidatorsFromAssemblyContaining<CreateBookingDto>());
 
 var app = builder.Build();
 
 
-app.UseStatusCodePages(async codeStatus =>
+app.UseStatusCodePages( async  codeStatus =>
 {
     if (codeStatus.HttpContext.Response.StatusCode == 404)
     {

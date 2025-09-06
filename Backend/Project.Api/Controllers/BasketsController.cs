@@ -28,7 +28,9 @@ namespace Project.Api.Controllers
         [HttpGet]
         public IActionResult GetBasketsByMenuTableNumber(int id)
         {
-            return Ok(_basketService.TGetBasketsByMenuTableNumber(id));
+            var values = _basketService.TGetBasketsByMenuTableNumber(id);
+            return Ok(values);
+
         }
         [HttpGet("GetBasketsByMenuTableWithProductName")]
         public IActionResult GetBasketsByMenuTableWithProductName(int id)
@@ -37,12 +39,14 @@ namespace Project.Api.Controllers
             //var values = context.Baskets.Include(x=>x.Product).Where(y=>y.MenuTableID == id).Select(z=>z.Product!.ProductName);
             var values = context.Baskets.Include(x => x.Product).Where(y => y.MenuTableID == id).Select(z => new ResultBasketListWithProducts
             {
-                ProductID = z.ProductID,
+                BasketID = z.BasketID,
                 ProductCount = z.ProductCount,
                 MenuTableID = z.MenuTableID,
                 ProductPrice = z.ProductPrice,
-                ProductName = z.Product!.ProductName,
+                ProductID = z.ProductID,
                 ProductTotalPrice = z.ProductTotalPrice,
+                ProductName = z.Product!.ProductName
+
 
             }).ToList();
             return Ok(values);
@@ -51,8 +55,18 @@ namespace Project.Api.Controllers
         [HttpPost]
         public IActionResult BasketAdd(CreateBasketDto createBasketDto)
         {
-            var detectedValues = _mapper.Map<Basket>(createBasketDto);
-            _basketService.TInsert(detectedValues);
+            //var detectedValues = _mapper.Map<Basket>(createBasketDto);
+            //_basketService.TInsert(detectedValues);
+            using var context = new SignalRContext();
+            _basketService.TInsert(new Basket()
+            {
+                ProductID = createBasketDto.ProductID,
+                MenuTableID = createBasketDto.MenuTableID,
+                ProductCount = 1,
+                ProductPrice = context.Products.Where(x => x.ProductID == createBasketDto.ProductID).Select(y => y.ProductPrice).FirstOrDefault(),
+                ProductTotalPrice = createBasketDto.ProductTotalPrice,
+
+            });
             return Ok("Hakkımda Kısmı Başarılı Bir Şekilde Eklendi");
         }
 
