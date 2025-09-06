@@ -5,14 +5,14 @@
 
 <section class="food_section layout_padding-bottom">
     <div class="container">
-        <div class="heading_container heading_center">
+       @*  <div class="heading_container heading_center">
             <h2>
                 Menülerimiz
             </h2>
         </div>
         <ul class="filters_menu">
      @*        <li class="active" data-filter="*">Tümü</li> *@
-            @if (Model.Categories != null)
+           @*  @if (Model.Categories != null)
             {
                 @foreach (var category in Model.Categories)
                 {
@@ -21,7 +21,7 @@
                     </li>
                 }
             }
-        </ul>
+        </ul>  *@
         <div class="filters-content">
             <div class="row grid">
                 @if (Model.Products != null)

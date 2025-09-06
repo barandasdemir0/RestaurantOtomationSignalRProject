@@ -21,7 +21,7 @@ namespace Project.WebUI.ViewComponents.DefaultComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var pullData = await client.GetAsync("https://localhost:7240/api/Product/ProductListWithCategory");
+            var pullData = await client.GetAsync("https://localhost:7240/api/Product/GetLast6Products");
             var convertString = await pullData.Content.ReadAsStringAsync();
             var convertData = JsonConvert.DeserializeObject<List<ResultProductDto>>(convertString);
 

@@ -10,6 +10,7 @@ namespace Project.DataAccessLayer.Abstract
     public interface IProductDal : IGenericDal<Product>
     {
         List<Product> GetProductsWithCategories();
+        List<Product> GetLast6Products();
         int ProductCount();
         int ProductCountByCategoryNameHamburger();
         int ProductCountByCategoryNamePizza();
@@ -17,5 +18,6 @@ namespace Project.DataAccessLayer.Abstract
         string ProductPriceByMax();
         string ProductPriceByMin();
         decimal ProductPriceByHamburger();
+
     }
 }

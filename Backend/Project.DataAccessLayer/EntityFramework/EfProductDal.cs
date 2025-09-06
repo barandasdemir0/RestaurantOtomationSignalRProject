@@ -18,6 +18,11 @@ namespace Project.DataAccessLayer.EntityFramework
         {
         }
 
+        public List<Product> GetLast6Products()
+        {
+            using var context = new SignalRContext();
+            return context.Products.Take(6).ToList();
+        }
 
         public List<Product> GetProductsWithCategories()
         {

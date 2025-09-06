@@ -64,6 +64,11 @@ namespace Project.Api.Controllers
         {  
             return Ok(_productService.TProductPriceByHamburger());
         }
+        [HttpGet("GetLast6Products")]
+        public IActionResult GetLast6Products()
+        {  
+            return Ok(_productService.TGetLast6Products());
+        }
 
         [HttpPost]
         public IActionResult ProductInsert(CreateProductDto createProductDto)

@@ -18,6 +18,11 @@ namespace Project.BusinessLayer.Concrete
             _productDal = productDal;
         }
 
+        public List<Product> TGetLast6Products()
+        {
+           return _productDal.GetLast6Products();
+        }
+
         public void TDelete(Product entity)
         {
             _productDal.Delete(entity);
